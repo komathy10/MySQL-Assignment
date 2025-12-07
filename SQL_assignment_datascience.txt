@@ -1,0 +1,135 @@
+SQL ASSIGNMENT - 1 
+
+#creating table for storing customer details 
+create table customer_details(
+    Customer_ID int primary key,
+    Customer_Name varchar(50),
+    City varchar(30),
+    Phone int
+);
+#inserting data
+insert into customer_details values
+(1001,'Arjun','Puducherry',12547),
+(1002,'Banu Priya','Indra nagar',23589),
+(1003,'Riya','Lawspet',78941),
+(1004,'Deva','Rainbow colony',49870),
+(1005,'Sanjay','Rajiv nagar',38521);
+
+select*from customer_details;
+
+--output--
+Customer_ID|Customer_Name|City|Phone
+1001|Arjun|Puducherry|12547
+1002|Banu Priya|Indra nagar|23589
+1003|Riya|Lawspet|78941
+1004|Deva|Rainbow colony|49870
+1005|Sanjay|Rajiv nagar|38521
+ 
+
+#creating table for storing Product details
+create table product_details(
+    Product_ID int primary key,
+    Product_name varchar(30),
+    Price int,
+    Category varchar(50),
+    Customer_ID int
+);
+
+#inserting data
+insert into product_details values
+(010,'Pencil box',200,'Stationery',1001),
+(020,'Chair',500,'Furniture',1002),
+(030,'Face Powder',900,'Cosmetics',1003),
+(040,'Black board',1500,'Stationery',1004),
+(050,'Sofa',5000,'Furniture',1005),
+(060,'Sunscreen',350,'Cosmetics',1006);
+
+select*from product_details;
+--output--
+Product_ID|Product_name|Price|Category|Customer_ID
+10|Pencil box|200|Stationery|1001
+20|Chair|500|Furniture|1002
+30|Face Powder|900|Cosmetics|1003
+40|Black board|1500|Stationery|1004
+50|Sofa|5000|Furniture|1005
+60|Sunscreen|350|Cosmetics|1006
+
+select sum(price) as total_sales from product_details;
+--output--
+total_sales
+8450
+
+select min(Price) from product_details;
+--output--
+min(Price)
+200
+
+select max(Price) from product_details;
+--output--
+max(Price)
+5000
+
+select avg(Price) as average_price from product_details;
+--output--
+average_price
+1408.3333
+
+select count(*) from customer_details;
+--output--
+total_customers
+5
+
+select count(*) as total_products from product_details;
+--output--
+total_products
+6
+
+#AND and OR operator 
+select customer_name from customer_details where city='Puducherry';
+--output--
+customer_name
+Arjun
+
+select customer_name from customer_details where city='Puducherry' AND customer_ID=1002;
+--output--
+No table to Visualize.
+
+select customer_name from customer_details where city='Puducherry' Or customer_ID=1002;
+--output--
+customer_name
+Arjun
+Banu Priya
+
+select Product_name ,price ,customer_ID from product_details where price>=500 and Category='Stationery';
+--output--
+Product_name|price|customer_ID
+Black board|1500|1004
+
+select Product_name ,price ,customer_ID from product_details where price>=500 or Category='Stationery';
+--output--
+Product_name|price|customer_ID
+Pencil box|200|1001
+Chair|500|1002
+Face Powder|900|1003
+Black board|1500|1004
+Sofa|5000|1005
+
+#order by 
+select * from customer_details order by customer_name desc;
+--output--
+Customer_ID|Customer_Name|City|Phone
+1005|Sanjay|Rajiv nagar|38521
+1003|Riya|Lawspet|78941
+1004|Deva|Rainbow colony|49870
+1002|Banu Priya|Indra nagar|23589
+1001|Arjun|Puducherry|12547
+
+select product_name , price  from product_details order by price asc;
+--output--
+product_name|price
+Pencil box|200
+Sunscreen|350
+Chair|500
+Face Powder|900
+Black board|1500
+Sofa|5000
